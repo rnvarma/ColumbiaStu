@@ -40,13 +40,19 @@ class IndexPage(TemplateView):
         return render(request, self.template_name, {'user': request.user})
 
 class LoginPage(TemplateView):
-    """ The Index Page. """
+    """ The Login Page. """
     template_name = 'accounts/login.html'
 
     def get(self, request):
         return render(request, self.template_name, {'user': request.user})
-    
-    
+
+class SignupPage(TemplateView):
+    """ The Signup Page. """
+    template_name = 'accounts/signup.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'user': request.user})
+
 def staff_only(view):
     """ Staff-only View decorator. """
     
