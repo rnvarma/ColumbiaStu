@@ -18,9 +18,13 @@ urlpatterns = patterns('',
     
     url(r'^$', views.IndexPage.as_view(), name='index'),
     url(r'^login/', views.LoginPage.as_view()),
+    url(r'^signup/', views.SignupPage.as_view()),
     
     url(r'^test/', include('testapp.urls')),
     url(r'^users/', include('users.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^profile/', views.ProfilePage.as_view()),
+
 )
