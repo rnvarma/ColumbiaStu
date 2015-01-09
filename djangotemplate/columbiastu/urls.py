@@ -23,4 +23,7 @@ urlpatterns = patterns('',
     url(r'^users/', include('users.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^profile/', views.ProfilePage.as_view()),
+
 )

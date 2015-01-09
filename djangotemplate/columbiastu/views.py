@@ -45,7 +45,13 @@ class LoginPage(TemplateView):
 
     def get(self, request):
         return render(request, self.template_name, {'user': request.user})
-    
+
+class ProfilePage(TemplateView):    
+    """ The Profile Page """
+    template_name = 'accounts/profile.html'
+
+    def get(self, request):
+	return render(request, self.template_name, {'user': request.user})
     
 def staff_only(view):
     """ Staff-only View decorator. """
