@@ -34,7 +34,17 @@ class NotFoundView(ErrorView):
     
 class IndexPage(TemplateView):
     """ The Index Page. """
-    template_name = 'index.html'
+    template_name = 'homePage.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'user': request.user})
+
+class LoginPage(TemplateView):
+    """ The Index Page. """
+    template_name = 'accounts/login.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'user': request.user})
     
     
 def staff_only(view):

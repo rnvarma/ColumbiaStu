@@ -10,14 +10,27 @@ class LikeModel(models.Model):
 class DislikeModel(models.Model):
   pass
 
+class CommentModel(models.Model):
+  comment = models.TextField(blank = True, default = '')
+
+class ClassTagModel(models.Model):
+  name = models.CharField(max_length = 50, blank = True, default = '')
+
+class SchoolTagModel(models.Model):
+  name = models.CharField(max_length = 50, blank = True, default = '')
+
+class AreaTagModel(models.Model):
+  name = models.CharField(max_length = 50, blank = True, default = '')
 
 class PostModel(models.Model):
   title = models.CharField(max_length = 200, blank = True, default = '')
   description = models.TextField(blank = True, default = '')
-  upvotes = models.IntegerField(default = 0)
-  downvotes = models.IntegerField(default = 0)
   likes = models.ManyToManyField(LikeModel, related_name = "post")
   dislikes = models.ManyToManyField(DislikeModel, related_name = "post")
+  comments = models.ManyToManyField(CommentModel, related_name = "post")
+  classTags = models.ManyToManyField(ClassTagModel, related_name = "posts")
+  schoolTags = models.ManyToManyField(SchoolTagModel, related_name = "posts")
+  areaTags = models.ManyToManyField(AreaTagModel, related_name = "posts")
 
 # overriding the Django User model to allow for custom Users
 class MyUserManager(BaseUserManager):
@@ -60,7 +73,7 @@ class MyUser(AbstractBaseUser):
   date_of_birth = models.DateField()
   is_active = models.BooleanField(default=True)
   is_admin = models.BooleanField(default=False)
-  
+
 
   objects = MyUserManager()
 
