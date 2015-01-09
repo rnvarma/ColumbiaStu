@@ -13,3 +13,20 @@
 .post-row {
 	padding-bottom: 30px;
 }
+
+.sidebar_subsection {
+	font-family:'Oswald',arial narrow,sans-serif;
+	font-size: 150%;
+	padding-left: 10px;
+}
+
+.sidebar_title {
+	font-family:'Oswald',arial narrow,sans-serif;
+	padding-left: 30px;
+	font-size: 130%;
+}
+
+.sidebar_divider {
+	font-size: 100%;
+	margin-bottom: 15px;
+}

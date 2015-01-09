@@ -1,9 +1,4 @@
 
-
-
-
-
-
 function makePostImage(imgSrc) {
 	var titleDiv = document.createElement("div");
 	titleDiv.className = "col-md-2 col-sm-3 text-center";
@@ -39,15 +34,15 @@ function makePost(title, imgSrc) {
 	return newRow
 }
 
-$(document).ready(function() {
-	var newsFeed = document.getElementById("newsfeed-head");
-	for (var i = 0; i < 5; i++) {
-		post = makePost("Repurpose Content to Reach a Wider Audience",
-			"http://api.randomuser.me/portraits/thumb/men/58.jpg");
-		newsFeed.appendChild(post);
-		newsFeed.appendChild(document.createElement("hr"));
-	}
-})
+// $(document).ready(function() {
+// 	var newsFeed = document.getElementById("newsfeed-head");
+// 	for (var i = 0; i < 5; i++) {
+// 		post = makePost("Repurpose Content to Reach a Wider Audience",
+// 			"http://api.randomuser.me/portraits/thumb/men/58.jpg");
+// 		newsFeed.appendChild(post);
+// 		newsFeed.appendChild(document.createElement("hr"));
+// 	}
+// })
 
 
 

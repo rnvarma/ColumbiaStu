@@ -29,6 +29,7 @@ footer {
   min-height:199px;
   background-color:#000044;
   color:#aaaacc;
+  margin-bottom: 20px;
 }
 
 #masthead h1 {
@@ -62,7 +63,7 @@ footer {
 }
 
 .top-spacer {
-  background-color:#ffffff;
+  background-color:#000044;
   height:40px;
 }
 
