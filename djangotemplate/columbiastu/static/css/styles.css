@@ -157,6 +157,12 @@ a,a:hover {
   padding:6px;
   color:#fff;
 }
+
+#header_logo {
+  width: 23px;
+  margin-top: -5px;
+  margin-right: 7px;
+}
     
 .btn-twitter {background-color:#4099FF;color:#fff;}
 .btn-facebook {background-color:#3B5998;color:#fff;}
