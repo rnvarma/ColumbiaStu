@@ -13,13 +13,65 @@
 	padding-left: 10px;
 }
 
+.sidebar_subsection_small {
+	font-family:'Oswald',arial narrow,sans-serif;
+	font-size: 100%;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+
 .sidebar_title {
 	font-family:'Oswald',arial narrow,sans-serif;
 	padding-left: 30px;
 	font-size: 130%;
 }
 
+.sidebar_title:hover{
+	background-color: #F3F3F3;
+	border-color: #F3F3F3;
+	cursor: pointer;
+}
+
+.sidebar_title_small {
+	font-family:'Oswald',arial narrow,sans-serif;
+	padding-left: 10px;
+	font-size: 80%;
+}
+
+.sidebar_title_small:hover{
+	background-color: #F3F3F3;
+	border-color: #F3F3F3;
+	cursor: pointer;
+}
+
 .sidebar_divider {
 	font-size: 100%;
 	margin-bottom: 15px;
+}
+
+.main_browse {
+	margin-top: 25px;
+	text-align: center;
+}
+
+.tourn-btn{
+	padding: 10px 20px;
+	font-size:120%;
+	border-radius: 0;
+	font-family:'Oswald',arial narrow,sans-serif;
+}
+
+.tourn-btn:hover{
+	background-color: #F3F3F3;
+	border-color: #F3F3F3;
+}
+
+#all_ideas:hover{
+	cursor: pointer;
+	background-color: #F3F3F3;
+	border-color: #F3F3F3;
+}
+
+.number_count {
+	font-size: 400%;
 }
