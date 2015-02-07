@@ -62,6 +62,10 @@
 	padding-left: 10px;
 }
 
+.comment {
+	text-align: left;
+}
+
 .sidebar_subsection_small {
 	font-family:'Oswald',arial narrow,sans-serif;
 	font-size: 100%;
@@ -73,7 +77,7 @@
 	font-family:'Oswald',arial narrow,sans-serif;
 	padding-left: 30px;
 	font-size: 130%;
-	
+
 }
 
 .sidebar_title:hover{

@@ -1,20 +1,21 @@
-var hello = [];
+// [score, area category, title, comment, submitted by, time];
+var data = [["30", "math", "lerner sucks", "seriously it sucks a lot", "gml2153", "1 day"], ["31", "math", "lerner sucks", "seriously it sucks a lot", "gml2153", "1 day"], ["30", "math", "lerner sucks", "seriously it sucks a lot", "gml2153", "1 day"], ["42", "math", "lerner sucks", "seriously it sucks a lot", "gml2153", "1 day"], ["53", "math", "lerner sucks", "seriously it sucks a lot", "gml2153", "1 day"]];
 
-function makePost() {
+function makePost(data) {
 	var mainRow = document.createElement("div");
 	mainRow.className = "row post-row";
 
 	var br = document.createElement("br");
-	var leftSection = leftSide();
+	var leftSection = leftSide(data);
 	mainRow.appendChild(leftSection);
 
-	var rightSection = rightSide();
+	var rightSection = rightSide(data);
 	mainRow.appendChild(rightSection);
 
 	return mainRow;
 }
 
-function leftSide() {
+function leftSide(data) {
 	var leftSection = document.createElement("div");
 	leftSection.className = "col-md-3 col-sm-3 text-center";
 	var feedback = document.createElement("div");
@@ -23,7 +24,7 @@ function leftSide() {
 
 	var number = document.createElement("div");
 	number.className = "col-md-12 col-sm-12 text-center number_count";
-	var number_text = document.createTextNode("69");
+	var number_text = document.createTextNode(data[0]);
 
 	var vote = document.createElement("div");
 	vote.className = "col-md-12 col-sm-12 text-center";
@@ -57,62 +58,60 @@ function leftSide() {
 
 }
 
-function rightSide() {
+function rightSide(data) {
 	var rightSection = document.createElement("div");
 	rightSection.className = "col-md-9 col-sm-9";
+
+	var areaCategory = document.createElement("div");
+	areaCategory.className = "'col-md-12 col-sm-12' style= 'text-align: left;'";
+	var area = document.createElement("div");
+	area.className = "categories";
+	var area_text = document.createTextNode(data[1] + ":");
+
+	var title = document.createElement("div");
+	title.className = "col-md-12 col-sm-12 complain_title";
+	var title_text = document.createTextNode(data[2]);
+
+	var comment = document.createElement("div");
+	comment.className = "col-md-12 col-sm-12 comment";
+	var comment_text = document.createTextNode(data[3]);
+
+	var submitted = document.createElement("div");
+	submitted.className = "col-md-12 col-sm-12 submit_by";
+	var submit_text = document.createTextNode("submitted by " + data[4] + " " + data[5] +" ago");
+
+	submitted.appendChild(submit_text);
+	comment.appendChild(comment_text);
+	title.appendChild(title_text);
+
+	area.appendChild(area_text);
+	areaCategory.appendChild(area);
+
+	rightSection.appendChild(areaCategory);
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(title);
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(comment);
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(document.createElement("br"));
+	rightSection.appendChild(submitted);
 
 
 	return rightSection;
 
 }
 
-
-// function makePostImage(imgSrc) {
-// 	var titleDiv = document.createElement("div");
-// 	titleDiv.className = "col-md-2 col-sm-3 text-center";
-// 	var titleLink = document.createElement("a");
-// 	titleLink.className = "story-title";
-// 	titleLink.setAttribute("href", "#");
-// 	var titleImg = document.createElement("img");
-// 	titleImg.className = "post-image img-circle";
-// 	titleImg.setAttribute("src", imgSrc);
-// 	titleLink.appendChild(titleImg);
-// 	titleDiv.appendChild(titleImg);
-// 	return titleDiv
-// }
-
-// function makePostTitle(title) {
-// 	var postDiv = document.createElement("div");
-// 	postDiv.className = "col-md-10 col-sm-9";
-// 	var titleDiv = document.createElement("h3");
-// 	titletext = document.createTextNode(title);
-// 	titleDiv.appendChild(titletext);
-// 	postDiv.appendChild(titleDiv);
-// 	return postDiv
-// }
-
-// function makePost(title, imgSrc) {
-// 	var newRow = document.createElement("div");
-// 	newRow.className = "row post-row";
-// 	newRow.appendChild(document.createElement("br"));
-// 	var image = makePostImage(imgSrc);
-// 	var title = makePostTitle(title);
-// 	newRow.appendChild(image);
-// 	newRow.appendChild(title)
-// 	return newRow
-// }
-
 $(document).ready(function() {
 	var newsFeed = document.getElementById("newsfeed-head");
-	for (var i = 0; i < 2; i++) {
-		post = makePost();
+	for (var i = 0; i < data.length; i++) {
+		post = makePost(data[i]);
 		newsFeed.appendChild(post);
 		newsFeed.appendChild(document.createElement("hr"));
 	}
 })
-
-
-
 
 
 
