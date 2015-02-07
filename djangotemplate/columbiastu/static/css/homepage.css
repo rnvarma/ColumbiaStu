@@ -1,10 +1,59 @@
+.categories{
+	color: #44719B;
+}
+
+.categories:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.submit_by{
+	text-align:right;
+	font-style: italic;
+
+}
+
+.upvote {
+	background-color: #98FB98;
+	cursor: pointer;
+	border-top-left-radius: 15%;
+	border-top-right-radius: 15%;
+	border-bottom-left-radius: 15%;
+	border-bottom-right-radius: 15%;
+	text-align: center;
+}
+
+.upvote:hover{
+	background-color: #32B141;
+	cursor: pointer;
+}
+
+.downvote {
+	background-color: #F88379;
+	cursor: pointer;
+	border-top-left-radius: 15%;
+	border-top-right-radius: 15%;
+	border-bottom-left-radius: 15%;
+	border-bottom-right-radius: 15%;
+	text-align: center;
+}
+
+.downvote:hover{
+	background-color: #E52B50;
+	cursor: pointer;
+}
+
 .post-image {
 	width:100px;
 	height:100px
 }
 
 .post-row {
-	padding-bottom: 30px;
+	padding-bottom: 10px;
+}
+
+.post-row:hover {
+	border-left: thick solid #0F52BA;
 }
 
 .sidebar_subsection {
@@ -24,6 +73,7 @@
 	font-family:'Oswald',arial narrow,sans-serif;
 	padding-left: 30px;
 	font-size: 130%;
+	
 }
 
 .sidebar_title:hover{
@@ -51,7 +101,7 @@
 
 .main_browse {
 	margin-top: 25px;
-	text-align: center; 
+	text-align: center;
 }
 
 .tourn-btn{
@@ -64,6 +114,13 @@
 .tourn-btn:hover{
 	background-color: #F3F3F3;
 	border-color: #F3F3F3;
+}
+
+.complain_title{
+	font-size:150%;
+	/*color: #44719B;*/
+	font-weight: bold;
+	text-align: left;
 }
 
 #all_ideas:hover{
