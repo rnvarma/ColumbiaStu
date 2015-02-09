@@ -1,0 +1,160 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/checkbox.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+{% endblock %}
+
+{% block page_title %} Create and Account {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">    
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body" id = "sign-up-content">
+          <form action="/post/new/" class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2" method="post" id="sign-up-form">
+            {% csrf_token %}
+
+            <div class = "form-section-header text-uppercase">
+              Name your idea
+            </div>
+
+            <div class = "form-group">
+              <input name="title" type="text" class="form-control signup-input firstname" placeholder="Name your post" autocomplete="off"/>
+            </div>
+
+            <div class = "form-section-header text-uppercase">
+              Describe your idea
+            </div>
+
+            <div class = "form-group">
+              <textarea name="description" type="text" class="form-control signup-input lastname" placeholder="Describe why you are making this post and why people should vote for it!" rows="7" autocomplete="off"/></textarea>
+            </div>
+
+            <div class = "form-section-header text-uppercase">
+              Which College is this idea affiliated with?
+            </div>
+
+            <div class = "form-group" style = "font-weight:200">
+              <select multiple class="form-control" name="college">
+                <option>Barnard College</option>
+                <option>Columbia College</option>
+                <option>Engineering</option>
+                <option>General Studies</option>
+                <option>SIPA</option>
+              </select>
+            </div>
+
+            <div class = "form-section-header text-uppercase">
+              Pick Relavent Topics
+            </div>
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="academics" name="tag_academics" />
+                <label for="academics"></label>
+              </div>
+              Academics
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="athletics" name="tag_athletics" />
+                <label for="athletics"></label>
+              </div>
+              Athletics
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="campusevents" name="tag_campusevents" />
+                <label for="campusevents"></label>
+              </div>
+              Campus Events
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="careerservices" name="tag_careerservices" />
+                <label for="careerservices"></label>
+              </div>
+              Career Services
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="diningservices" name="tag_diningservices" />
+                <label for="diningservices"></label>
+              </div>
+              Dining Services
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="facilities" name="tag_facilities" />
+                <label for="facilities"></label>
+              </div>
+              Facilities
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="healthservices" name="tag_healthservices" />
+                <label for="healthservices"></label>
+              </div>
+              Health Services
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="housinglife" name="tag_housinglife" />
+                <label for="housinglife"></label>
+              </div>
+              Housing / Residential Life
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="studentgroups" name="tag_studentgroups" />
+                <label for="studentgroups"></label>
+              </div>
+              Student Groups
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="technology" name="tag_technology" />
+                <label for="technology"></label>
+              </div>
+              Technology
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="miscellaneous" name="tag_miscellaneous" />
+                <label for="miscellaneous"></label>
+              </div>
+              Miscellaneous
+            </label>
+
+            <label class="checkbox-inline">
+              <div class="squaredOne">
+                <input type="checkbox" value="None" id="longtermgoals" name="tag_longtermgoals" />
+                <label for="longtermgoals"></label>
+              </div>
+              Long-Term Goals
+            </label>
+
+            <button style=""class="search-button btn btn-default center-button" type="submit">Creat Post</button>
+           </form>
+        </div>
+      </div>
+    </div><!--/col-12-->
+  </div>
+</div>
+
+{% endblock %}

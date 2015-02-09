@@ -178,3 +178,55 @@ a,a:hover {
 .btn-twitter:hover {background-color:#3088FF;color:#62BBFF;}
 .btn-facebook:hover {background-color:#2A4998;color:#4C6BBA;}
 .btn-google-plus:hover {background-color:#C23836;color:#E45A58;}
+
+.checkbox-inline+.checkbox-inline {
+  margin-left: 0px !important;
+}
+
+.checkbox-inline {
+  width: 24%;
+  text-align: center;
+  font-size: 115%;
+  font-weight: 200;
+  height: 125px;
+}
+
+
+.form-section-header {
+  text-align: center;
+  font-weight: 800;
+  font-size: 130%;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.center-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 200px;
+  font-size: 130%;
+}
+
+select[multiple] {
+  font-weight: 200;
+  font-size: 115%;
+  text-align: center;
+}
+
+input {
+  border: none !important;
+  box-shadow: none !important;
+  border-bottom-style: solid !important;
+  border-radius: 0 !important;
+  border-bottom-width: thin !important;
+  font-size: large;
+  font-weight: 200;
+}
+
+input:focus {
+  border-bottom-color: #66afe9 !important;
+  border-bottom-width: medium !important;
+}
+
