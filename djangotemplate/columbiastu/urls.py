@@ -18,13 +18,9 @@ urlpatterns = patterns('',
     
     url(r'^$', views.IndexPage.as_view(), name='index'),
     url(r'^login/', views.LoginPage.as_view()),
-    url(r'^signup/', views.SignupPage.as_view()),
-    
-    url(r'^test/', include('testapp.urls')),
-    url(r'^users/', include('users.urls')),
-    
+    url(r'^logout/', views.LogoutView.as_view()),
+    url(r'^post/new', views.NewPostView.as_view()),
+    url(r'^signup/', views.SignupPage.as_view()),    
     url(r'^admin/', include(admin.site.urls)),
-
     url(r'^profile/', views.ProfilePage.as_view()),
-
 )

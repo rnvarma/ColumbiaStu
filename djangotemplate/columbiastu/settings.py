@@ -60,12 +60,11 @@ if SSL_ENABLED:
     
     
 # Login Redirect URL
-LOGIN_URL = 'users_login'
+LOGIN_URL = '/login/'
 
 
 # Not important for debug mode.
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -76,9 +75,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'testapp',
-    'backend'
+    'backend',
+    'south'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,8 +99,12 @@ WSGI_APPLICATION = 'columbiastu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(ROOT_DIR, '..', 'database.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'de91i8oqakrl8g',
+        'USER': 'xqgvcpfocadbcv',
+        'PASSWORD': 'OYh4sOM2e1uBLx0qee3eqgKaVb',
+        'HOST': 'ec2-174-129-213-103.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
