@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 SETTINGS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.join(SETTINGS_DIR, '..')
-
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Fix for weird x-png MIME types:
 import mimetypes
@@ -97,6 +97,13 @@ WSGI_APPLICATION = 'columbiastu.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
 
 DATABASES = {
     'default': {

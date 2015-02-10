@@ -233,7 +233,22 @@ class PostParser(object):
 
 class PostAPI(APIView):
 
+    def get_recent_posts(self):
+        today = datetime.datetime.now()
+        distance = datetime.timedelta(days = 90)
+        lower = today - distance
+        posts = PostModel.objects.filter(date_submitted__gt=lower).order_by("date_submitted")
+        data = []
+        posts_data = PostSerializer(posts, many=True).data
+        posts = zip(posts, posts_data)
+        for (postObj, postData) in posts:
+            data.append(PostParser.process_post(postData, postObj))
+        return data
+
+
     def get(self, request, post_id):
+        if post_id == "recent":
+            return Response(self.get_recent_posts())
         return Response(PostParser.process_post_id(post_id))
 
 
