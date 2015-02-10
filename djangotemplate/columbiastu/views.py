@@ -13,8 +13,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from backend.models import *
+from backend.serializer import *
 
 class ErrorView(View):
     """ HTTP 500: Internal Server Error """
@@ -58,17 +61,26 @@ class NewPostView(TemplateView):
                     topic.save()
                     topics.append(topic)
         title = data["title"][0]
+        print "title after retrieve", title
         description = data["description"][0]
         if SchoolTagModel.objects.filter(name=data["college"]).count():
             college = SchoolTagModel.objects.get(name=data["college"][0])
         else:
             college = SchoolTagModel(name=data["college"][0])
             college.save()
+        year = user.year
+        if ClassTagModel.objects.filter(name=year).count():
+            year = ClassTagModel.objects.get(name=year)
+        else:
+            year = ClassTagModel(name=year)
+            year.save()
         post = PostModel(title=title, description=description,
                          date_submitted=datetime.datetime.now())
         post.save()
+        print "title after save", post.title
         post.author.add(user)
         post.schoolTags.add(college)
+        post.classTags.add(year)
         for topic in topics:
             post.areaTags.add(topic)
         return HttpResponseRedirect("/")
@@ -152,18 +164,79 @@ class SignupPage(TemplateView):
         login(request, user_login)
         return HttpResponseRedirect("/")
 
-def staff_only(view):
-    """ Staff-only View decorator. """
-    
-    def decorated_view(request, *args, **kwargs):
-        if not request.user.is_authenticated():
-            return redirect_to_login(request.get_full_path())
-            
-        if not request.user.is_staff:
-            raise PermissionDenied
-            
-        return view(request, *args, **kwargs)
-        
-    return decorated_view
-    
-    
+class UserParser(object):
+
+    @staticmethod
+    def process_userdata_id(ud_id):
+        user_info = {}
+        userdata = UserData.objects.get(id=ud_id)
+        user = userdata.user
+        user_info["year"] = userdata.year
+        user_info["is_admin"] = userdata.is_admin
+        user_info["name"] = user.last_name
+        user_info["email"] = user.email
+        user_info["id"] = ud_id
+        return user_info
+
+
+class PostParser(object):
+
+    objs_seen = {"classTags": {}, "schoolTags": {},
+                 "areaTags": {}}
+
+    post_cache = {}
+
+    @staticmethod
+    def process_post_id(p_id):
+        if p_id in PostParser.post_cache:
+            return PostParser.post_cache[p_id]
+        post = PostModel.objects.get(id=p_id)
+        data = PostSerializer(post).data
+        processed_data = PostParser.process_post(data, post)
+        PostParser.post_cache[p_id] = processed_data
+        return processed_data
+
+    @staticmethod
+    def process_post(post, postObj):
+        if post["id"] in PostParser.post_cache:
+            return PostParser.post_cache[post["id"]]
+        classTags, schoolTags, areaTags = [], [], []
+        for class_id in post["classTags"]:
+            if class_id in PostParser.objs_seen["classTags"]:
+                classTags.append(PostParser.objs_seen["classTags"][class_id])
+            else:
+                classObj = ClassTagModel.objects.get(id=class_id)
+                classTags.append(classObj.name)
+                PostParser.objs_seen["classTags"][class_id] = classObj.name
+        for sch_id in post["schoolTags"]:
+            if sch_id in PostParser.objs_seen["schoolTags"]:
+                schoolTags.append(PostParser.objs_seen["schoolTags"][sch_id])
+            else:
+                schoolObj = SchoolTagModel.objects.get(id=sch_id)
+                schoolTags.append(schoolObj.name)
+                PostParser.objs_seen["schoolTags"][sch_id] = schoolObj.name
+        for area_id in post["areaTags"]:
+            if area_id in PostParser.objs_seen["areaTags"]:
+                areaTags.append(PostParser.objs_seen["areaTags"][area_id])
+            else:
+                areaObj = AreaTagModel.objects.get(id=area_id)
+                areaTags.append(areaObj.name)
+                PostParser.objs_seen["areaTags"][area_id] = areaObj.name
+        post["classTags"] = classTags
+        post["areaTags"] = areaTags
+        post["schoolTags"] = schoolTags
+        post["author"] = UserParser.process_userdata_id(post["author"][0])
+        post["num_likes"] = postObj.likes.count()
+        post["num_dislikes"] = postObj.dislikes.count()
+        PostParser.post_cache[post["id"]] = post
+        return post
+
+class PostAPI(APIView):
+
+    def get(self, request, post_id):
+        return Response(PostParser.process_post_id(post_id))
+
+
+
+
+
