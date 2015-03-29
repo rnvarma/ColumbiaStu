@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 SETTINGS_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.join(SETTINGS_DIR, '..')
-
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Fix for weird x-png MIME types:
 import mimetypes
@@ -60,12 +60,11 @@ if SSL_ENABLED:
     
     
 # Login Redirect URL
-LOGIN_URL = 'users_login'
+LOGIN_URL = '/login/'
 
 
 # Not important for debug mode.
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -76,9 +75,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'testapp',
-    'backend'
+    'backend',
+    'south',
+    'rest_framework'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,10 +98,21 @@ WSGI_APPLICATION = 'columbiastu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(ROOT_DIR, '..', 'database.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'de91i8oqakrl8g',
+        'USER': 'xqgvcpfocadbcv',
+        'PASSWORD': 'OYh4sOM2e1uBLx0qee3eqgKaVb',
+        'HOST': 'ec2-174-129-213-103.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
